@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+mainClassName = 'ExamplePrestoConsumer'
+
+dependencies {
+    compile 'com.google.guava:guava:23.0'
+    compile 'com.facebook.presto:presto-jdbc:0.212'
+}
+
+repositories {
+    jcenter()
+}
+
+

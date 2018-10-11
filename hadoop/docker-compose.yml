@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  namenode:
+    image: sbaldrich/hadoop-namenode
+    ports:
+      - "50070:50070"
+      - "9000:9000"
+    container_name: "namenode"
+    volumes:
+      - "./conf/slaves:/opt/hadoop/etc/hadoop/slaves"
+      - "./conf/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml"
+  datanode0:
+    image: sbaldrich/hadoop-datanode
+    volumes:
+      - "./conf/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml"
+    container_name: "datanode0"
+  datanode1:
+    image: sbaldrich/hadoop-datanode
+    volumes:
+      - "./conf/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml"
+    container_name: "datanode1"
+  datanode2:
+    image: sbaldrich/hadoop-datanode
+    volumes:
+      - "./conf/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml"
+    container_name: "datanode2"
