@@ -1,7 +1,7 @@
 .PHONY: test clean
 
 all: build
-	docker-compose -d up
+	docker-compose up -d
 
 build:
 	make build -C hadoop
