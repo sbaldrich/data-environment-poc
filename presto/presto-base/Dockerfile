@@ -17,6 +17,8 @@ WORKDIR /usr/local
 
 RUN curl --remote-name ${BASE_URL}/presto-server/${PRESTO_VERSION}/presto-server-${PRESTO_VERSION}.tar.gz
 
+RUN tar -xzvf presto-server-${PRESTO_VERSION}.tar.gz
+
 RUN ln -s /usr/local/presto-server-${PRESTO_VERSION} $PRESTO_HOME
 
 ADD scripts ${PRESTO_HOME}/scripts
