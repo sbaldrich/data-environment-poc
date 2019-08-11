@@ -21,7 +21,7 @@
 
   <property>
     <name>javax.jdo.option.ConnectionURL</name>
-    <value>jdbc:postgresql://database/metastore</value>
+    <value>jdbc:postgresql://pgmaster/metastore</value>
   </property>
 
   <property>

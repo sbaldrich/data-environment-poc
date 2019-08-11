@@ -53,7 +53,7 @@ ADD mapred-site.xml $HADOOP_HOME/etc/hadoop/mapred-site.xml
 ADD yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml
 
 # Hive
-ENV HIVE_VERSION 2.3.3
+ENV HIVE_VERSION 2.3.5
 RUN curl https://www-eu.apache.org/dist/hive/hive-${HIVE_VERSION}/apache-hive-${HIVE_VERSION}-bin.tar.gz | tar -xzf - -C /usr/local/ \
     && ln -s /usr/local/apache-hive-${HIVE_VERSION}-bin/ /opt/hive
 

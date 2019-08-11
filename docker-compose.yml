@@ -20,13 +20,34 @@ services:
       - "./conf/hadoop:/opt/hadoop/etc/hadoop/"
       - "./conf/hive/hive-site.xml:/opt/hive/conf/hive-site.xml"
     container_name: "datanode0"
-  database:
+    environment:
+      - POSTGRES_PASSWORD=master
+
+  pgmaster:
+    hostname: pgmaster
     image: postgres:10.5-alpine
-    container_name: "database"
+    container_name: pgmaster
     volumes:
-      - "./conf/postgres/setupdb.sh:/docker-entrypoint-initdb.d/setupdb.sh"
+      - "./conf/postgres/setuppgmaster.sh:/docker-entrypoint-initdb.d/setupdb.sh"
     ports:
       - "5433:5432"
+    environment:
+      - POSTGRES_PASSWORD=master
+      - PG_REP_USER=replica
+      - PG_REP_PASSWORD=replica
+
+  pgslave:
+    hostname: pgslave
+    image: postgres:10.5-alpine
+    container_name: pgslave
+    volumes:
+      - "./conf/postgres/setuppgslave.sh:/docker-entrypoint-initdb.d/setupdb.sh"
+    ports:
+      - "5434:5432"
+    environment:
+      - PG_REP_USER=replica
+      - PG_REP_PASSWORD=replica
+
   coordinator:
     build:
       context: presto/presto-coordinator
